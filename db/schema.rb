@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_08_100838) do
+ActiveRecord::Schema.define(version: 2020_02_09_084736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2020_02_08_100838) do
   end
 
   create_table "promotions", force: :cascade do |t|
-    t.string "type", null: false
+    t.string "category", null: false
     t.hstore "rule", default: {}
     t.boolean "active", default: true
     t.datetime "from"
     t.datetime "to"
-    t.index ["type"], name: "index_promotions_on_type"
+    t.index ["category"], name: "index_promotions_on_category"
   end
 
   add_foreign_key "basket_items", "baskets"

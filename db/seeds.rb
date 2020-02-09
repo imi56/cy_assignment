@@ -8,10 +8,10 @@ Item.insert_all!([
 ])
 
 Promotion.insert_all!([
-  {type: "item_amount", rule: {quantity: 3, unit: "amount", value: 15}, active: true},
-  {type: "item_amount", rule: {quantity: 2, unit: "amount", value: 5}, active: true},
-  {type: "total_amount", rule: {threshost_amount: 150, unit: "amount", value: 20}, active: true},
-  {type: "item_percentage", rule: {quantity: 3, unit: "percentage", value: 10}, active: false},
+  {category: "item_amount", rule: {quantity: 3, unit: "amount", value: 15}, active: true},
+  {category: "item_amount", rule: {quantity: 2, unit: "amount", value: 5}, active: true},
+  {category: "total_amount", rule: {threshost_amount: 150, unit: "amount", value: 20}, active: true},
+  {category: "item_percentage", rule: {quantity: 3, unit: "percentage", value: 10}, active: false},
 ])
 
 ItemPromotion.insert_all!([
