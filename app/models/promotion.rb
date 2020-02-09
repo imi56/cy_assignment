@@ -1,5 +1,5 @@
 class Promotion < ApplicationRecord
-  store :rule, accessors: [:quantity, :unit, :value, :threshost_amount], coder: Hash
+  store_accessor :rule, :quantity, :unit, :value, :threshost_amount
 
   has_one :item_promotion, dependent: :destroy #can be has_many if required
   has_one :item, through: :item_promotion
@@ -13,10 +13,10 @@ class Promotion < ApplicationRecord
   end
 
   # item_price is need when category is percentage
-  def scan(item_quantity, item_price)
+  def scan(item_quantity, item_price = 0)
     case category
     when 'item'
-      discount_for(quantity, item_price)
+      discount_for(item_quantity, item_price)
     else
       raise "Invalid promotion category: #{category}"
     end
@@ -34,8 +34,9 @@ class Promotion < ApplicationRecord
 
   # item_price is need when discount is given in percentage
   def discount_for(item_quantity, item_price)
-    (item_quantity.to_i / quantity.to_i).to_f * self.value.to_f if unit == AMOUNT
+    return (item_quantity.to_i / quantity.to_i).to_f * self.value.to_f if unit == AMOUNT
     # Percentage calculation logic here:  if unit == PERCENTAGE
+    0 # return 0 if there is no discount
   end
 
   # returns true if promotion is based on amount and total amount qualifies for discount
