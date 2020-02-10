@@ -1,5 +1,14 @@
 # README
 
+* TO RUN ON DOCKER
+  Following changes are required in database.yml under dev env.
+  ```password:
+  database: postgres
+  host: db
+  port: 5432
+  ```
+  Due to time constraint did not set test env in docker.
+
 * System dependencies
   Docker version 19.03.5
 
